@@ -51,18 +51,3 @@ while True:
         except Exception:
             print(f"You have entered {pokemon}...")
             print(f"{pokemon} is not a valid name of a pokemon...")
-
-
-# p_sprite = pokemon_json["sprites"]['front_default']
-
-pokemon_req = requests.get(url)
-pokemon_json = pokemon_req.json()
-p_moves = pokemon_json["moves"]
-print("Here is a list of all the moves this pokemon is known to learn across all of the pokemon games...")
-for i in p_moves:
-    print(i['move']['name'], end=", ")
-
-p_stats = pokemon_json["stats"]
-print("\nThis is a list of this pokemon's base stats:")
-for i in p_stats:
-    print(f"{i['stat']['name']}:\t {i['base_stat']}")

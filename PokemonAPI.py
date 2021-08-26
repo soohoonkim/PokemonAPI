@@ -4,21 +4,22 @@ import requests
 while True:
     pokemon = input("Please enter the name or number of Pokemon that you want to see (type exit to exit): ")
     
-    #exit option for the program
-    if pokemon == "exit":
-        break
     #checking if user entered ID or name of the Pokemon
-    else:
+    if pokemon != "exit":
         try:
             pokemon = int(pokemon)
         except:
             pokemon = str(pokemon)
             pokemon = pokemon.lower()
+    #exit option for the program    
+    else:
+        break
 
     #passing user input to HTTP request URL
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
 
     #requesting, receiving json, parsing for "name", "ID", and "Type" and printing them for the requested pokemon all wrapped into a single function
+    #FIXME!!!!!!!! - optimize/use best practices for functions
     def get_pokemon():
         pokemon_req = requests.get(url)
         pokemon_json = pokemon_req.json()
@@ -43,11 +44,11 @@ while True:
         try:
             get_pokemon()
         except Exception:
-            print(f"You have entered pokemon number {pokemon}")
+            print(f"You have entered pokemon number {pokemon}.")
             print("This may be out of range...")
     else:
         try:
             get_pokemon()
         except Exception:
-            print(f"You have entered {pokemon}...")
+            print(f"You have entered {pokemon}.")
             print(f"{pokemon} is not a valid name of a pokemon...")
